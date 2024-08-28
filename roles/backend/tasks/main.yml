@@ -41,9 +41,9 @@
    state: import
    name: all
    target: /app/schema/backend.sql
-   login_user: {{ user_name }}
-   login_password: {{ login_password }}
-   login_host: {{ login_host}}
+  login_user: {{ user_name }}
+  login_password: {{ login_password }}
+  login_host: {{ login_host}}
 
 - name: daemon reload
   ansible.builtin.systemd_service:
