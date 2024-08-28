@@ -24,3 +24,12 @@
 - name: Get MySQL version
   ansible.builtin.debug:
    msg: "output is {{ mysql_info }}"
+
+
+- name: set mysql password
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass "{{ login_password }}"
+  when: mysql_info.failed is true
+
+- name: reread configs
+  ansible.builtin.systemd_service:
+   daemon_reload: true
