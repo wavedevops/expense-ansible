@@ -6,5 +6,5 @@ login_user: root
 login_password: ExpenseApp@1
 login_host: mysql.chowdary.cloud
 
-## backend services file DB host
+## backend services file DB host variable declaration
 DB_HOST: mysql.chowdary.cloud
