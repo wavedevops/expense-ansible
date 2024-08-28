@@ -5,9 +5,11 @@
 
 - name: start and enable mysql service
   ansible.builtin.service:
-   name: mysql
+   name: mysqld
    state: started
    enable: true
+
+
 
 - name: Get MySQL version with non-default credentials
   community.mysql.mysql_info:
