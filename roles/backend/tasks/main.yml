@@ -1,0 +1,56 @@
+- name: disable default nodejs
+  ansible.builtin.command: dnf module disable nodejs -y
+
+- name: enable nodejs:20
+  ansible.builtin.command: dnf module enable nodejs:20 -y
+
+- name: Install NodeJS
+  ansible.builtin.dnf:
+   name: nodejs
+   state: present
+
+- name: create expense user
+  ansible.builtin.user:
+   name: expense
+
+- name: task from common
+  ansible.builtin.import_role:
+   name: common
+   tasks_from: app-pre-req
+
+- name: install npm dependencies
+  ansible.builtin.command: npm install
+  args:
+   chdir: /app
+
+
+- name: Copy Backend Service file
+  ansible.builtin.template:
+   src: backend.service
+   dest: /etc/systemd/system/backend.service
+#
+- name: Install MySQL Client & MySQL Python Module
+  ansible.builtin.dnf:
+   name:
+    - mysql
+    - python3-PyMySQL
+   state: present
+
+- name: Load Schema
+  community.mysql.mysql_db:
+   state: import
+   name: all
+   target: /app/schema/backend.sql
+   login_user: root
+   login_password: ExpenseApp@1
+   login_host: mysql.chowdary.cloud
+
+- name: daemon reload
+  ansible.builtin.systemd_service:
+   daemon_reload: true
+
+- name: start and enable backend service
+  ansible.builtin.service:
+   name: backend
+   state: started
+   enabled: yes
