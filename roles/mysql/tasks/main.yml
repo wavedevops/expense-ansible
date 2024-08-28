@@ -20,4 +20,4 @@
 
 - name: Get MySQL version
   ansible.builtin.debug:
-   msg: {{mysql_info}}
+   msg: "output is {{ mysql_info }}"
