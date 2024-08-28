@@ -2,7 +2,7 @@ component: backend
 app_path: /app
 
 ## mysql clint server variables declaration
-login_user: root
+user_name: root
 login_password: ExpenseApp@1
 login_host: mysql.chowdary.cloud
 

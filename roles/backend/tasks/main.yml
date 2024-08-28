@@ -41,7 +41,7 @@
    state: import
    name: all
    target: /app/schema/backend.sql
-   login_user: {{ login_user }}
+   login_user: {{ user_name }}
    login_password: {{ login_password }}
    login_host: {{ login_host}}
 
