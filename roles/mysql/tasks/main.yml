@@ -14,9 +14,9 @@
 
 - name: Get MySQL version with non-default credentials
   community.mysql.mysql_info:
-   login_user: "{{ login_user }}"
-   login_password: "{{ login_password }}"
-   login_host: "{{ login_host }}"
+   login_user: {{ login_user }}
+   login_password: {{ login_password }}
+   login_host: {{ login_host }}
    filter: version
   ignore_errors: true
   register: mysql_info
@@ -30,6 +30,6 @@
   ansible.builtin.shell: mysql_secure_installation --set-root-pass "{{ login_password }}"
   when: mysql_info.failed is true
 
-- name: reread configs
+- name: reread configs 
   ansible.builtin.systemd_service:
    daemon_reload: true
