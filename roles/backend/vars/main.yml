@@ -1,3 +1,9 @@
+component: backend
 app_path: /app
 
-component: backend
+login_user: root
+login_password: ExpenseApp@1
+login_host: mysql.chowdary.cloud
+
+## backend services file DB host
+DB_HOST: mysql.chowdary.cloud
