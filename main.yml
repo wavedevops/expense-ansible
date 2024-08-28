@@ -1,0 +1,5 @@
+- name: Expense app Setup
+  hosts: all
+  become: yes
+  roles:
+    - "{{ROLE_NAME}}"
