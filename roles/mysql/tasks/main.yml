@@ -1,14 +1,15 @@
-- name: install mysql
+- name: Install MySQL Client & MySQL Python Module
   ansible.builtin.dnf:
-   name: mysql
-   state: installed
+   name:
+    - mysql
+    - python3-PyMySQL
+   state: present
 
-- name: start and enable mysql service
+- name: Start mysql service
   ansible.builtin.service:
    name: mysqld
    state: started
-   enable: true
-
+   enabled: yes
 
 
 - name: Get MySQL version with non-default credentials
