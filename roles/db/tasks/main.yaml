@@ -1,0 +1,40 @@
+- name: Install MySQL Server
+  ansible.builtin.dnf:
+    name: mysql-server
+    state: latest
+
+- name: Start and Enable MySQL server
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: install python mysql dependencies
+  ansible.builtin.pip:
+    name:
+    - PyMySQL
+    - cryptography
+    executable: pip3.9 # pip3.11 if python version is 3.11
+
+# check password is already setup or not
+- name: Get MySQL version with non-default credentials
+  community.mysql.mysql_info:
+    login_user: "{{ login_user }}"
+    login_password: "{{ login_password }}"
+    login_host: "{{ login_host }}"
+    filter: version
+  ignore_errors: true
+  register: mysql_info
+
+- name: Get MySQL version
+  ansible.builtin.debug:
+    msg: "output is {{ mysql_info }}"
+
+
+- name: set mysql password
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass "{{ login_password }}"
+  when: mysql_info.failed is true
+
+- name: reread configs
+  ansible.builtin.systemd_service:
+    daemon_reload: true

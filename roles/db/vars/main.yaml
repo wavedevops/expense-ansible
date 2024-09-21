@@ -1,0 +1,5 @@
+#mysql_root_password: ExpenseApp@1
+login_host: db.chowdary.cloud
+login_user: root
+login_password: ExpenseApp@1
+
