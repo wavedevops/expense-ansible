@@ -1,5 +1,0 @@
-- name: Expense app Setup
-  hosts: {{ component }}
-  become: yes
-  roles:
-    - "{{ component }}"

@@ -1,4 +1,0 @@
-app_path: /usr/share/nginx/html
-component: frontend
-################################
-backend_api_url: backend.chowdary.cloud
