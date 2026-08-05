@@ -1,0 +1,2 @@
+- name: set hoste name
+  ansible.builtin.command: set-prompt {{ component }}-{{ env }}

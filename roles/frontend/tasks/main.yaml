@@ -1,0 +1,20 @@
+- name: install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: present
+
+- name: import app prerequisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prerequisites
+
+- name: copy expence conf file
+  ansible.builtin.template:
+    src: expense.conf
+    dest: /etc/nginx/default.d/expense.conf
+
+- name: start nginx service
+  ansible.builtin.systemd_service:
+    name: nginx
+    enabled: true
+    state: restarted

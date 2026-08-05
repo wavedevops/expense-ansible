@@ -1,0 +1,7 @@
+---
+db_host: "db-{{ env }}.wavedevops.online"
+db_user: root
+db_pass: ExpenseApp@1
+
+app_path: /app
+component: backend
