@@ -1,5 +1,5 @@
 ---
-db_host: "db-{{ env }}.wavedevops.online"
+db_host: "mysql-{{ env }}.wavedevops.online"
 db_user: root
 db_pass: ExpenseApp@1
 
